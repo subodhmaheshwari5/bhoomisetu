@@ -33,7 +33,7 @@ server-side (not just hidden in the UI).
 cd backend
 cp .env.example .env   # point DATABASE_URL at your Postgres+PostGIS instance
 npm install
-npm run db:migrate && npm run db:seed
+npm run db:migrate && npm run seed:demo
 npm run dev             # http://localhost:4000
 
 # 2. Frontend (separate terminal)
@@ -45,6 +45,30 @@ npm run dev             # http://localhost:5173
 
 Sign in at `/login` with any of the 6 seeded demo accounts (see either
 README — `demo1234` for all of them).
+
+### Demo accounts
+
+The demo dataset contains 90 cases. The password is `demo1234` for all demo accounts.
+
+| Email | Role | What to look at |
+|---|---|---|
+| `admin@bhoomisetu.demo` | `super_admin` | Everything, including Administration pages |
+| `dolr.officer@bhoomisetu.demo` | `dolr_officer` | Admin + all cases |
+| `district.officer@bhoomisetu.demo` | `district_officer` | Jaipur-scoped only |
+| `state.officer@bhoomisetu.demo` | `state_officer` | Rajasthan only |
+| `landowner@bhoomisetu.demo` | `landowner` | Own parcels only |
+| `agency@bhoomisetu.demo` | `land_agency` | Intentionally blocked |
+
+For administration, use `admin@bhoomisetu.demo` and open **Administration** → Users, States, Districts, Settings, and Audit Logs.
+
+Flagship intelligence case: **`BS-2026-00124`**.
+
+### Administration Access
+
+Administration features are role-gated:
+
+- `super_admin` — administration access
+- `dolr_officer` — administration access and all cases
 
 ### AI Configuration
 
@@ -129,7 +153,7 @@ cd backend
 npm test
 ```
 
-44 integration tests (Node's built-in `node:test`, no extra dependencies)
+210 integration tests (Node's built-in `node:test`, no extra dependencies)
 run against the real Express app and a real, freshly-reseeded database —
 covering authentication, RBAC (including the Landowner-blocked-from-
 case-creation scenario verified by hand throughout this project),
@@ -164,7 +188,7 @@ Phase 10:
 - [x] Backend lint
 - [x] Backend build (`tsc`, compiles to `dist/`, runs standalone)
 - [x] Frontend production build (`vite build`)
-- [x] Backend automated test suite (44/44 passing)
+- [x] Backend automated test suite (210/210 passing)
 - [x] Manual end-to-end verification against a live PostgreSQL/PostGIS
       instance for every phase (login, RBAC 403s, CRUD, CSV export,
       risk scoring, alert scan, notifications) — see each phase's README
