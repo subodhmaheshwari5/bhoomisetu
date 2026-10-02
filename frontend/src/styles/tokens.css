@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/*
+  BHOOMISETU DESIGN TOKENS
+  -------------------------------------------------
+  Palette   : institutional navy + a single restrained gold accent
+  Type      : Newsreader (headlines, editorial gravity) /
+              IBM Plex Sans (UI, body) / IBM Plex Mono (identifiers, data)
+  Principle : this is infrastructure software for a national process —
+              the interface should feel engineered, not decorated.
+*/
+
+@theme {
+  /* ---- color: navy scale (primary) ---- */
+  --color-navy-950: #071527;
+  --color-navy-900: #0b1f3a;
+  --color-navy-800: #122c4f;
+  --color-navy-700: #1c3c66;
+  --color-navy-600: #2b4f80;
+  --color-navy-500: #3d6299;
+  --color-navy-100: #dfe6ef;
+  --color-navy-50: #f1f4f8;
+
+  /* ---- color: gold accent (use sparingly) ---- */
+  --color-gold-600: #a8811f;
+  --color-gold-500: #c79830;
+  --color-gold-400: #d4af37;
+  --color-gold-100: #f3e9c9;
+  --color-gold-50: #faf5e5;
+
+  /* ---- color: neutrals / off-white background ---- */
+  --color-paper: #f7f5f0;
+  --color-paper-dim: #efece4;
+  --color-ink: #1a2130;
+  --color-ink-soft: #4a5164;
+  --color-slate: #6b7280;
+  --color-hairline: #dcd8cd;
+  --color-hairline-dark: #24344f;
+
+  /* ---- color: status system ---- */
+  --color-success: #1e7f4c;
+  --color-success-bg: #e7f3ec;
+  --color-warning: #b8791a;
+  --color-warning-bg: #faf1de;
+  --color-danger: #af3626;
+  --color-danger-bg: #f8e9e6;
+  --color-info: #2f5d8a;
+  --color-info-bg: #e8eff5;
+  --color-neutral: #6b7280;
+  --color-neutral-bg: #eceef1;
+
+  /* ---- type families ---- */
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-sans: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* ---- layout ---- */
+  --container-content: 1200px;
+  --radius-panel: 3px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-400);
+    color: var(--color-navy-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 2px;
+  }
+}

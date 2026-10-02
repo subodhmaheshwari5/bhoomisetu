@@ -1,0 +1,48 @@
+{
+  "name": "bhoomisetu-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "BhoomiSetu REST API -- Node/Express + TypeScript + PostgreSQL/PostGIS",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json && mkdir -p dist/database && cp src/database/schema.sql src/database/schema_enums.sql src/database/schema_ext.sql dist/database/",
+    "start": "node dist/server.js",
+    "db:migrate": "tsx src/database/migrate.ts",
+    "db:seed": "tsx src/database/seed.ts",
+    "seed:demo": "tsx src/database/seedDemoData.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint",
+    "prepare:test": "tsx --env-file=.env.test src/database/prepareTest.ts",
+    "pretest": "npm run prepare:test",
+    "test": "tsx --env-file=.env.test --test --test-concurrency=1 --test-force-exit tests/*.test.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.12.1",
+    "pg": "^8.23.0",
+    "zod": "^4.6.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^22.20.2",
+    "@types/pg": "^8.23.1",
+    "oxlint": "^1.82.0",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
