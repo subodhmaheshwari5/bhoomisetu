@@ -43,6 +43,11 @@ function scopeFor(
     clauses.push(`c.status = $${params.length}`);
   }
 
+  // An unrestricted caller with no caller-supplied filter yields zero clauses.
+  // Emitting a bare "WHERE " makes the following ORDER BY parse as a column
+  // reference (PostgreSQL: syntax error at or near "ORDER"). Omit the keyword
+  // so the report returns every row, which is the intended unrestricted scope.
+  if (clauses.length === 0) return "";
   return `WHERE ${clauses.join(" AND ")}`;
 }
 
